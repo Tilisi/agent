@@ -1,0 +1,65 @@
+{
+  "name": "daily_brief",
+  "version": "1.0.0",
+  "handler": "daily_brief",
+  "description": "Génère un brief quotidien du projet Git avec statistiques et résumé",
+  "category": "project-management",
+  "parameters": {
+    "repositoryPath": {
+      "type": "string",
+      "required": true,
+      "description": "Chemin du repository Git"
+    },
+    "since": {
+      "type": "string",
+      "required": false,
+      "format": "ISO8601",
+      "description": "Date de début pour le brief (ex: '2026-06-10')"
+    },
+    "includeStatistics": {
+      "type": "boolean",
+      "required": false,
+      "default": true,
+      "description": "Inclure les statistiques de commits et lignes de code"
+    },
+    "includePullRequests": {
+      "type": "boolean",
+      "required": false,
+      "default": true,
+      "description": "Inclure les détails des pull requests"
+    },
+    "includeIssues": {
+      "type": "boolean",
+      "required": false,
+      "default": true,
+      "description": "Inclure le résumé des issues"
+    },
+    "format": {
+      "type": "string",
+      "required": false,
+      "enum": ["markdown", "json", "html"],
+      "default": "markdown",
+      "description": "Format de sortie du brief"
+    }
+  },
+  "validation": {
+    "requireRepositoryExistence": true,
+    "validateDateFormat": true
+  },
+  "examples": [
+    {
+      "usage": "daily_brief('/path/to/repo')",
+      "input": {
+        "repositoryPath": "/path/to/repo",
+        "since": "2026-06-10",
+        "format": "markdown"
+      }
+    }
+  ],
+  "dependencies": [],
+  "riskLevel": "low",
+  "safeguards": [
+    "Validation des données du repository",
+    "Gestion des erreurs d'accès aux fichiers"
+  ]
+}
