@@ -1,0 +1,63 @@
+{
+  "name": "code_generator",
+  "version": "1.0.0",
+  "handler": "code_generator",
+  "description": "Génère du code à partir d'une description en langage naturel",
+  "category": "code-generation",
+  "parameters": {
+    "description": {
+      "type": "string",
+      "required": true,
+      "description": "Description détaillée du code à générer"
+    },
+    "language": {
+      "type": "string",
+      "required": true,
+      "enum": ["python", "javascript", "typescript", "java", "go", "rust", "cpp", "sql"],
+      "description": "Langage de programmation cible"
+    },
+    "style": {
+      "type": "string",
+      "required": false,
+      "enum": ["functional", "oop", "procedural"],
+      "description": "Style de programmation préféré"
+    },
+    "includeTests": {
+      "type": "boolean",
+      "required": false,
+      "default": true,
+      "description": "Si true, génère également les tests unitaires"
+    },
+    "includeDocumentation": {
+      "type": "boolean",
+      "required": false,
+      "default": true,
+      "description": "Si true, ajoute la documentation et les commentaires"
+    }
+  },
+  "validation": {
+    "validateDescription": true,
+    "validateLanguage": true,
+    "checkCodeQuality": true,
+    "runTests": true
+  },
+  "examples": [
+    {
+      "usage": "code_generator('Fonction pour trier un tableau', 'python')",
+      "input": {
+        "description": "Fonction pour trier un tableau de nombres en ordre croissant",
+        "language": "python",
+        "style": "functional",
+        "includeTests": true
+      }
+    }
+  ],
+  "dependencies": [],
+  "riskLevel": "medium",
+  "safeguards": [
+    "Valide la qualité du code généré",
+    "Exécute les tests automatiquement",
+    "Limite la complexité du code généré",
+    "Ajoute des avertissements pour le code complexe"
+  ]
+}
