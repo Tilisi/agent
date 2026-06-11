@@ -1,0 +1,47 @@
+{
+  "name": "auto_commit",
+  "version": "1.0.0",
+  "handler": "auto_commit",
+  "description": "Effectue un commit Git automatique avec message généré ou spécifié",
+  "category": "git-automation",
+  "parameters": {
+    "message": {
+      "type": "string",
+      "required": false,
+      "description": "Message de commit personnalisé. Si non fourni, génère un message automatique."
+    },
+    "files": {
+      "type": "array",
+      "required": false,
+      "description": "Liste des fichiers à commiter. Si vide, utilise tous les fichiers modifiés."
+    },
+    "autoGenerateMessage": {
+      "type": "boolean",
+      "required": false,
+      "default": true,
+      "description": "Si true, génère automatiquement le message basé sur les changements"
+    }
+  },
+  "validation": {
+    "requireAuthentication": true,
+    "requireBranch": true,
+    "validateMessage": true
+  },
+  "examples": [
+    {
+      "usage": "auto_commit() // Commit automatique avec message généré",
+      "input": {}
+    },
+    {
+      "usage": "auto_commit('feat: Add new feature')",
+      "input": { "message": "feat: Add new feature" }
+    }
+  ],
+  "dependencies": [],
+  "riskLevel": "high",
+  "safeguards": [
+    "Requiert confirmation avant commit",
+    "Prévisualise les changements",
+    "Crée une sauvegarde locale"
+  ]
+}
