@@ -1,0 +1,97 @@
+{
+  "name": "project_scaffold",
+  "version": "1.0.0",
+  "handler": "project_scaffold",
+  "description": "Génère la structure complète d'un nouveau projet avec configuration, dépendances et tests",
+  "category": "project-initialization",
+  "parameters": {
+    "projectName": {
+      "type": "string",
+      "required": true,
+      "description": "Nom du projet"
+    },
+    "projectType": {
+      "type": "string",
+      "required": true,
+      "enum": ["web-app", "api", "cli", "library", "full-stack", "mobile"],
+      "description": "Type de projet"
+    },
+    "language": {
+      "type": "string",
+      "required": true,
+      "enum": ["python", "javascript", "typescript", "java", "go", "rust"],
+      "description": "Langage principal du projet"
+    },
+    "framework": {
+      "type": "string",
+      "required": false,
+      "description": "Framework à utiliser (ex: React, Django, Flask, Express)"
+    },
+    "includeTests": {
+      "type": "boolean",
+      "required": false,
+      "default": true,
+      "description": "Inclure la structure de tests"
+    },
+    "includeCI": {
+      "type": "boolean",
+      "required": false,
+      "default": true,
+      "description": "Générer la configuration CI/CD"
+    },
+    "includeLinting": {
+      "type": "boolean",
+      "required": false,
+      "default": true,
+      "description": "Inclure la configuration de linting"
+    },
+    "outputPath": {
+      "type": "string",
+      "required": true,
+      "description": "Chemin de sortie du projet généré"
+    }
+  },
+  "validation": {
+    "validateProjectName": true,
+    "validateOutputPath": true,
+    "checkDiskSpace": true
+  },
+  "examples": [
+    {
+      "usage": "project_scaffold('my-app', 'web-app', 'typescript', 'React')",
+      "input": {
+        "projectName": "my-app",
+        "projectType": "web-app",
+        "language": "typescript",
+        "framework": "React",
+        "includeTests": true,
+        "includeCI": true,
+        "outputPath": "./my-app"
+      }
+    }
+  ],
+  "dependencies": [],
+  "riskLevel": "medium",
+  "safeguards": [
+    "Valide le chemin de sortie",
+    "Vérifie l'espace disque disponible",
+    "Crée des fichiers sécurisés",
+    "Génère un README avec instructions"
+  ],
+  "generatedStructure": {
+    "directories": [
+      "src/",
+      "tests/",
+      "docs/",
+      ".github/workflows/",
+      "config/"
+    ],
+    "files": [
+      "README.md",
+      "package.json",
+      ".env.example",
+      ".gitignore",
+      "LICENSE"
+    ]
+  }
+}
