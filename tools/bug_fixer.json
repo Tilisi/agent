@@ -1,0 +1,55 @@
+{
+  "name": "bug_fixer",
+  "version": "1.0.0",
+  "handler": "bug_fixer",
+  "description": "Analyse et corrige automatiquement un bug dans un fichier de code",
+  "category": "code-analysis",
+  "parameters": {
+    "filePath": {
+      "type": "string",
+      "required": true,
+      "description": "Chemin du fichier à analyser"
+    },
+    "errorMessage": {
+      "type": "string",
+      "required": false,
+      "description": "Message d'erreur ou description du bug"
+    },
+    "language": {
+      "type": "string",
+      "required": true,
+      "enum": ["python", "javascript", "typescript", "java", "go", "rust", "cpp"],
+      "description": "Langage de programmation du fichier"
+    },
+    "autoFix": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "description": "Si true, applique automatiquement la correction. Sinon, propose la correction."
+    }
+  },
+  "validation": {
+    "requireFileExistence": true,
+    "validateLanguage": true,
+    "checkSyntax": true
+  },
+  "examples": [
+    {
+      "usage": "bug_fixer('src/main.js', 'TypeError: undefined is not a function', 'javascript')",
+      "input": {
+        "filePath": "src/main.js",
+        "errorMessage": "TypeError: undefined is not a function",
+        "language": "javascript",
+        "autoFix": false
+      }
+    }
+  ],
+  "dependencies": [],
+  "riskLevel": "high",
+  "safeguards": [
+    "Crée un backup avant modification",
+    "Teste la correction sur les cas de test existants",
+    "Demande confirmation avant autoFix",
+    "Génère un rapport d'analyse"
+  ]
+}
